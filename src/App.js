@@ -11,11 +11,17 @@ class App extends Component {
           <h2>Welcome to React</h2>
         </div>
         <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload!!!!!
+          <input type="text" />
+          <button type="button" onClick={addNote}>Add note</button>
         </p>
       </div>
     );
   }
 }
+
+function addNote() {
+  let noteText = document.querySelector("input").value;
+  console.log(noteText);
+};
 
 export default App;
