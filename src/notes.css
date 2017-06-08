@@ -1,0 +1,131 @@
+/*
+body {
+	width: 100%;
+	margin: 0;
+	padding: 0;
+	background-color: #eeeeee;
+	font-family: sans-serif;
+}
+*/
+
+.noticeBoard {
+  text-align: center;
+}
+
+.wrapper {
+	max-width: 90%;
+	margin: 0 auto;
+}
+
+.note-wrapper {
+  max-width: 380px;
+  margin: 0 auto;
+}
+
+.logo-header {
+	background-color: #222;
+	color: #f7b7d3;
+	height: 150px;
+  padding: 20px;
+  margin-bottom: 1%;
+}
+
+.logo-header h1 {
+	margin: 0;
+	padding-top: 25px;
+	padding-bottom: 5px;
+	font-family: sans-serif;
+	font-size: 5em;
+	font-weight: bold;
+}
+
+.note {
+	text-align: center;
+	background-color: #222;
+	color: #f7b7d3;
+  -webkit-box-shadow: 5px 5px 2px -3px rgba(0,0,0,0.5);
+  -moz-box-shadow: 5px 5px 2px -3px rgba(0,0,0,0.5);
+  box-shadow: 5px 5px 2px -3px rgba(0,0,0,0.5);
+}
+
+.note h2, p {
+	margin-left: 3px;
+}
+
+.note h2 {
+  padding-top: 5px;
+}
+
+.note p {
+  padding-bottom: 5px;
+}
+
+.rela {
+	position: relative;
+}
+/*  SECTIONS  */
+.section {
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+}
+
+/*  COLUMN SETUP  */
+.col {
+	display: block;
+	float:left;
+	margin: 1% 0 1% 1.6%;
+}
+.col:first-child { margin-left: 0; }
+
+/*  GROUPING  */
+.group:before,
+.group:after { content:""; display:table; }
+.group:after { clear:both;}
+.group { zoom:1; /* For IE 6/7 */ }
+/*  GRID OF EIGHT  */
+.span_8_of_8 {
+	width: 100%;
+}
+
+.span_7_of_8 {
+  	width: 87.3%;
+}
+
+.span_6_of_8 {
+  	width: 74.6%;
+}
+
+.span_5_of_8 {
+  	width: 61.9%;
+}
+
+.span_4_of_8 {
+  	width: 49.2%;
+}
+
+.span_3_of_8 {
+  	width: 36.5%;
+}
+
+.span_2_of_8 {
+  	width: 23.8%;
+}
+
+.span_1_of_8 {
+  	width: 11.1%;
+}
+
+/* WRAPPER FULL WIDTH BELOW 700 PIXELS */
+@media only screen and (max-width: 700px) {
+	#wrapper { max-width: 100%; margin: 0 auto; }
+	#noteBody { max-width: 100%; margin: 0 auto; }
+}
+
+/*  GO FULL WIDTH BELOW 480 PIXELS */
+@media only screen and (max-width: 500px) {
+	nav { float: none; text-align: center; }
+	#header { text-align: center; }
+	.col {  margin: 1% 0 1% 0%; }
+	.span_1_of_8, .span_2_of_8, .span_3_of_8, .span_4_of_8, .span_5_of_8, .span_6_of_8, .span_7_of_8, .span_8_of_8 { width: 100%; }
+}
