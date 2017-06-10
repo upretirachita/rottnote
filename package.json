@@ -11,8 +11,9 @@
     "mongodb": "^2.2.28"
   },
   "scripts": {
+    "start": "concurrently \"npm run server\" \"npm run client\"",
     "server": "babel-node server.js",
-    "lint": "eslint ."
+    "client": "babel-node start-client.js"
   },
   "devDependencies": {
     "concurrently": "3.1.0",

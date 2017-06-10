@@ -22,6 +22,14 @@ class App extends Component {
 function addNote() {
   let noteText = document.querySelector("input").value;
   console.log(noteText);
+  sendNoteToServer(noteText);
 };
 
+function sendNoteToServer(text) {
+  const newNote = { text: text };
+  const xhttp = new XMLHttpRequest();
+  xhttp.open("POST", "notes", true);
+  xhttp.setRequestHeader("Content-type", "application/json");
+  xhttp.send(JSON.stringify(newNote));
+};
 export default App;
