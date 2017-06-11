@@ -25,8 +25,11 @@ function addNote() {
   sendNoteToServer(noteText);
 };
 
+let noteArray = [];
+
 function sendNoteToServer(text) {
   const newNote = { text: text };
+  noteArray.push(newNote);
   const xhr = new XMLHttpRequest();
 
   xhr.onreadystatechange = () => {
@@ -36,6 +39,6 @@ function sendNoteToServer(text) {
   };
   xhr.open("POST", "notes", true);
   xhr.setRequestHeader("Content-type", "application/json");
-  xhr.send(JSON.stringify(newNote));
+  xhr.send(JSON.stringify(noteArray));
 };
 export default App;
