@@ -22,7 +22,7 @@ npm start
 
 `rottnote` configures a Webpack development server to run on `localhost:3000`. This development server will bundle all static assets located under `client/src/`. All requests to `localhost:3000` will serve `client/index.html` which will include Webpack's `bundle.js`.
 
-In this example, the React component `App` makes a request to an API server (`server.js`). The user's browser visits the Webpack dev server at `localhost:3000`. Then the React client communicates with the API server when needed at `localhost:3001`:
+The development environment setup has two web servers, the Webpack dev server (which serves static content) at `localhost:3000` and the rottnote API server (which provides the /notes REST API endpoint) at `localhost:3001`. To avoid CORS issues, the Webpack development server proxies requests intended to the API server, like this:
 
 ![Flow diagram](./flow-diagram.png)
 
