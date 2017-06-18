@@ -39,6 +39,6 @@ function sendNoteToServer(text) {
   };
   xhr.open("POST", "notes", true);
   xhr.setRequestHeader("Content-type", "application/json");
-  xhr.send(JSON.stringify(noteArray));
+  xhr.send(JSON.stringify(newNote));
 };
 export default App;

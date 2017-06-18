@@ -1,8 +1,12 @@
 const express = require('express');
-const bodyParser = require('body-parser');
 const app = express();
-
+const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
 app.use(bodyParser.json());
+
+let MONGODB_CONNECTED = false;
+const noteSchema = new mongoose.Schema({ text: String });
+const Notes = mongoose.model('Notes', noteSchema);
 
 app.set('port', (process.env.PORT || 3001));
 
@@ -11,9 +15,25 @@ if (process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'));
 }
 
+const dbConnStr = 'mongodb://rott:' + process.env.PW + '@ds131512.mlab.com:31512/rottnotedb';
+
+mongoose.connect(dbConnStr, function(err, db) {
+  if (err) {
+        console.log('Unable to connect to MongoDB. Logging notes to the server console...');
+    } else {
+        MONGODB_CONNECTED = true;
+    }
+});
+
 app.post('/notes', (req, res) => {
-  console.log(req.body);
-  res.json([]);
+  if(MONGODB_CONNECTED) {
+    Notes.create(req.body, function(err, createResults) {
+      res.send(createResults);
+    });
+  }
+  else
+    console.log(req.body);
+  //res.json([]);
 });
 
 app.listen(app.get('port'), () => {
