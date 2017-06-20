@@ -15,13 +15,14 @@ if (process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'));
 }
 
-const dbConnStr = 'mongodb://rott:' + process.env.PW + '@ds131512.mlab.com:31512/rottnotedb';
+const dbConnStr = process.env.DB_URI;
 
 mongoose.connect(dbConnStr, function(err, db) {
   if (err) {
         console.log('Unable to connect to MongoDB. Logging notes to the server console...');
     } else {
         MONGODB_CONNECTED = true;
+        console.log('Connected to DB at ' + dbConnStr);
     }
 });
 
