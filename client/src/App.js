@@ -1,21 +1,53 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import GoogleLogin from 'react-google-login';
+
+let authenticated = false;
+
 
 class App extends Component {
+
+  successGoogle = (response) => {
+    console.log(response);
+    authenticated = true;
+    this.forceUpdate();
+  }
+
+  failureGoogle = (response) => {
+    console.log(response);
+  }
+
+
   render() {
-    return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
+    if(authenticated) {
+      return (
+        <div className="App">
+          <div className="App-header">
+            <img src={logo} className="App-logo" alt="logo" />
+            <h2>Welcome to React</h2>
+          </div>
+          <p className="App-intro">
+            <input type="text" />
+            <button type="button" onClick={addNote}>Add note</button>
+          </p>
         </div>
-        <p className="App-intro">
-          <input type="text" />
-          <button type="button" onClick={addNote}>Add note</button>
-        </p>
-      </div>
-    );
+      )
+    }
+    else {
+      return (
+        <div className="App">
+          <h1>rottnote</h1>
+            <GoogleLogin
+              clientId="481779456855-p3avp42mv53b9g2d875gfpq4fdsnpkrs.apps.googleusercontent.com"
+              onSuccess={this.successGoogle}
+              onFailure={this.failureGoogle}
+            >
+              <span>Login with Google</span>
+            </GoogleLogin>
+          </div>
+        );
+    }
   }
 }
 
