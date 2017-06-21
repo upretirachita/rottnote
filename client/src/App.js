@@ -39,7 +39,7 @@ class App extends Component {
         <div className="App">
           <h1>rottnote</h1>
             <GoogleLogin
-              clientId="481779456855-p3avp42mv53b9g2d875gfpq4fdsnpkrs.apps.googleusercontent.com"
+              clientId="481779456855-ruamb5psvnjva1auqp6q3f7a0u9qatam.apps.googleusercontent.com"
               onSuccess={this.successGoogle}
               onFailure={this.failureGoogle}
             >
