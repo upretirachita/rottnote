@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import GoogleLogin from 'react-google-login';
+import RestApi from './RestApi';
 
 let authenticated = false;
-
+let noteArray = [];
 
 class App extends Component {
 
@@ -52,25 +53,10 @@ class App extends Component {
 }
 
 function addNote() {
-  let noteText = document.querySelector("input").value;
-  console.log(noteText);
-  sendNoteToServer(noteText);
-};
-
-let noteArray = [];
-
-function sendNoteToServer(text) {
-  const newNote = { text: text };
+  let text = document.querySelector("input").value;
+  const newNote = { text };
   noteArray.push(newNote);
-  const xhr = new XMLHttpRequest();
-
-  xhr.onreadystatechange = () => {
-      if ((xhr.readyState === 4) && (xhr.status >= 500)) {
-        console.log("Rottnote server error. Be sure to start the rottnote development environment by doing 'npm install' and 'npm start' at the TOP level! 'npm start' at TOP level will start webpack dev server to port 3000 and Node API backend to port 3001. NOTE: to avoid any CORS issues, the webpack dev server (at port 3000) is configured to proxy all requests to the '/notes' endpoint to the Node API backend (i.e. to port 3001)");
-      }
-  };
-  xhr.open("POST", "notes", true);
-  xhr.setRequestHeader("Content-type", "application/json");
-  xhr.send(JSON.stringify(newNote));
+  RestApi.postNewNote(newNote);
 };
+
 export default App;
