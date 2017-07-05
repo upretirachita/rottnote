@@ -38,5 +38,5 @@ app.post('/notes', (req, res) => {
 });
 
 app.listen(app.get('port'), () => {
-  console.log(`The rottnote NodeJS API server at: localhost:${app.get('port')}`); // eslint-disable-line no-console
+  console.log(`The rottnote NodeJS API server at: localhost:${app.get('port')}`);
 });
