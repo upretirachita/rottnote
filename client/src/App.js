@@ -5,13 +5,15 @@ import GoogleLogin from 'react-google-login';
 import RestApi from './RestApi';
 
 let authenticated = false;
-let noteArray = [];
 
 class App extends Component {
   constructor(props) {
     super(props)
 
-    this.state = { userName: null };
+    this.state = {
+      userName: null,
+      notes: []
+    };
   }
 
   successGoogle = (response) => {
@@ -35,8 +37,11 @@ class App extends Component {
           </div>
           <p className="App-intro">
             <input type="text" />
-            <button type="button" onClick={addNote}>Add note</button>
+            <button type="button" onClick={this.addNote}>Add note</button>
           </p>
+          {this.state.notes.map((note, index) => {
+            return <p>Note #{index + 1}: {note.text}</p>;
+          })}
         </div>
       )
     }
@@ -55,13 +60,13 @@ class App extends Component {
         );
     }
   }
+  addNote = () => {
+    let text = document.querySelector("input").value;
+    const newNote = { text };
+    const newNotes = this.state.notes.concat(newNote);
+    this.setState({ notes: newNotes });
+    RestApi.postNewNote(newNote);
+  }
 }
-
-function addNote() {
-  let text = document.querySelector("input").value;
-  const newNote = { text };
-  noteArray.push(newNote);
-  RestApi.postNewNote(newNote);
-};
 
 export default App;
