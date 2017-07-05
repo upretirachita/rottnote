@@ -8,11 +8,16 @@ let authenticated = false;
 let noteArray = [];
 
 class App extends Component {
+  constructor(props) {
+    super(props)
+
+    this.state = { userName: null };
+  }
 
   successGoogle = (response) => {
     console.log(response);
     authenticated = true;
-    this.forceUpdate();
+    this.setState({ userName: response.profileObj.name });
   }
 
   failureGoogle = (response) => {
@@ -26,7 +31,7 @@ class App extends Component {
         <div className="App">
           <div className="App-header">
             <img src={logo} className="App-logo" alt="logo" />
-            <h2>Welcome to React</h2>
+            <h2>Welcome to rottnote, {this.state.userName}!</h2>
           </div>
           <p className="App-intro">
             <input type="text" />
