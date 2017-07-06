@@ -5,7 +5,11 @@ const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 
 let MONGODB_CONNECTED = false;
-const noteSchema = new mongoose.Schema({ text: String });
+const noteSchema = new mongoose.Schema({
+  userEmail: String,
+  notes: {
+    type: Array
+  } });
 const Notes = mongoose.model('Notes', noteSchema);
 
 app.set('port', (process.env.PORT || 3001));
@@ -27,8 +31,14 @@ mongoose.connect(dbConnStr, function(err, db) {
 });
 
 app.post('/notes', (req, res) => {
+  console.log(req.body);
   if(MONGODB_CONNECTED) {
-    Notes.create(req.body, function(err, createResults) {
+    console.log("adding note");
+    let options = { upsert: true, new: true, setDefaultsOnInsert: true };
+    Notes.findOneAndUpdate({userEmail: req.body.userEmail}, req.body, options, function(err, createResults) {
+      if(err) {
+        console.log(err);
+      }
       res.send(createResults);
     });
   }

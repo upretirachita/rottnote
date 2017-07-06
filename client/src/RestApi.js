@@ -1,5 +1,6 @@
 const RestApi = {
-  postNewNote(newNote) {
+  postNewNote(state) {
+
     const xhr = new XMLHttpRequest();
 
     xhr.onreadystatechange = () => {
@@ -9,7 +10,7 @@ const RestApi = {
     };
     xhr.open("POST", "notes", true);
     xhr.setRequestHeader("Content-type", "application/json");
-    xhr.send(JSON.stringify(newNote));
+    xhr.send(JSON.stringify(state));
   }
 }
 

@@ -12,6 +12,7 @@ class App extends Component {
 
     this.state = {
       userName: null,
+      userEmail: null,
       notes: []
     };
   }
@@ -19,7 +20,8 @@ class App extends Component {
   successGoogle = (response) => {
     console.log(response);
     authenticated = true;
-    this.setState({ userName: response.profileObj.name });
+    this.setState({ userName: response.profileObj.name,
+      userEmail: response.profileObj.email });
   }
 
   failureGoogle = (response) => {
@@ -65,7 +67,11 @@ class App extends Component {
     const newNote = { text };
     const newNotes = this.state.notes.concat(newNote);
     this.setState({ notes: newNotes });
-    RestApi.postNewNote(newNote);
+    const newState = {
+      userEmail: this.state.userEmail,
+      notes: newNotes
+    };
+    RestApi.postNewNote(newState);
   }
 }
 
