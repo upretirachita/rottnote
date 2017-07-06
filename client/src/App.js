@@ -24,6 +24,10 @@ class App extends Component {
     this.setState({ userName: response.profileObj.name,
       userEmail: response.profileObj.email });
   }
+  saveClicked = (response) => {
+    console.log(response);
+  }
+
 
   failureGoogle = (response) => {
     console.log(response);
@@ -44,7 +48,7 @@ class App extends Component {
           </p>
           {this.state.notes.map((note, index) => {
             return(
-              <Note note={note} />
+              <Note onModify={this.saveClicked} note={note} />
             );
           })}
         </div>

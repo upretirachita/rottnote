@@ -5,10 +5,12 @@ class Note extends Component {
     super(props);
   }
 
+
   render() {
     return(
       <div>
         {this.props.note.text}
+        <button type="button" onClick={this.props.onModify}>Delete</button>
       </div>
     );
   }
