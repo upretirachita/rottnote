@@ -14,7 +14,8 @@ class App extends Component {
     this.state = {
       userName: null,
       userEmail: null,
-      notes: []
+      notes: [],
+      modifyIndex: -1
     };
   }
 
@@ -24,10 +25,6 @@ class App extends Component {
     this.setState({ userName: response.profileObj.name,
       userEmail: response.profileObj.email });
   }
-  saveClicked = (response) => {
-    console.log(response);
-  }
-
 
   failureGoogle = (response) => {
     console.log(response);
@@ -48,7 +45,12 @@ class App extends Component {
           </p>
           {this.state.notes.map((note, index) => {
             return(
-              <Note onModify={this.saveClicked} note={note} />
+              <Note
+                onModify={this.modifyClicked}
+                index={index}
+                note={note}
+                modify={index == this.state.modifyIndex}
+              />
             );
           })}
         </div>
@@ -79,6 +81,11 @@ class App extends Component {
       notes: newNotes
     };
     RestApi.postNewNote(newState);
+  }
+
+  modifyClicked = (index) => {
+    this.setState({ modifyIndex: index });
+    console.log(index);
   }
 }
 

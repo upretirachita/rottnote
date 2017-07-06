@@ -7,12 +7,26 @@ class Note extends Component {
 
 
   render() {
-    return(
-      <div>
-        {this.props.note.text}
-        <button type="button" onClick={this.props.onModify}>Delete</button>
-      </div>
-    );
+    if(this.props.modify)
+      return(
+        <div>
+          <input type="text" value={this.props.note.text}/>
+          <button
+            type="button"
+            onClick={() => this.props.onModify(this.props.index)}
+            >Modify</button>
+          </div>
+      );
+    else
+      return(
+        <div>
+          {this.props.note.text}
+          <button
+            type="button"
+            onClick={() => this.props.onModify(this.props.index)}
+            >Modify</button>
+        </div>
+      );
   }
 }
 
