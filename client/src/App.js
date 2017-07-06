@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import GoogleLogin from 'react-google-login';
 import RestApi from './RestApi';
+import Note from './Note';
 
 let authenticated = false;
 
@@ -42,7 +43,9 @@ class App extends Component {
             <button type="button" onClick={this.addNote}>Add note</button>
           </p>
           {this.state.notes.map((note, index) => {
-            return <p>Note #{index + 1}: {note.text}</p>;
+            return(
+              <Note note={note} />
+            );
           })}
         </div>
       )
