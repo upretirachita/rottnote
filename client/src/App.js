@@ -52,13 +52,13 @@ class App extends Component {
                 index={index}
                 note={note}
                 modify={index == this.state.modifyIndex}
-                
+
                 // save-line
                 onSave={this.saveClicked}
                 index={index}
                 note={note}
                 save={index == this.state.saveIndex}
-                
+
 				// eslint-disable-next-line
                 onDelete={this.deleteClicked}
 
@@ -108,7 +108,7 @@ class App extends Component {
   }
 
   deleteClicked = (index) => {
-    var array = this.state.notes;
+    var array = this.state.notes.slice();
     array.splice(index, 1);
     this.setState({ notes: array });
 
