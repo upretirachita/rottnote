@@ -16,6 +16,7 @@ class App extends Component {
       userEmail: null,
       notes: [],
       modifyIndex: -1,
+      saveIndex: -1,
       deleteIndex: -1
     };
   }
@@ -50,9 +51,15 @@ class App extends Component {
                 onModify={this.modifyClicked}
                 index={index}
                 note={note}
-                // eslint-disable-next-line
                 modify={index == this.state.modifyIndex}
-
+                
+                // save-line
+                onSave={this.saveClicked}
+                index={index}
+                note={note}
+                save={index == this.state.saveIndex}
+                
+				// eslint-disable-next-line
                 onDelete={this.deleteClicked}
 
                 index={index}
@@ -93,6 +100,10 @@ class App extends Component {
 
   modifyClicked = (index) => {
     this.setState({ modifyIndex: index });
+    console.log(index);
+  }
+   saveClicked = (index) => {
+    this.setState({ saveIndex: index });
     console.log(index);
   }
 
