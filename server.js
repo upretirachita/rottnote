@@ -47,6 +47,23 @@ app.post('/notes', (req, res) => {
   //res.json([]);
 });
 
+app.get('/notes/:email', (req, res) => {
+  let data;
+  if (MONGODB_CONNECTED) {
+    Notes.findOne({userEmail: req.params.email}, "notes", function(err, result) {
+      if (err) {
+        console.log(err);
+      }
+      if (result !== null) {
+        data = result;
+      } else {
+        data = [];
+      }
+      res.send(JSON.stringify(data));
+    });
+  }
+});
+
 app.listen(app.get('port'), () => {
   console.log(`The rottnote NodeJS API server at: localhost:${app.get('port')}`);
 });
