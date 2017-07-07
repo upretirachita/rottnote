@@ -25,7 +25,7 @@ class App extends Component {
     console.log(response);
     authenticated = true;
     this.setState({ userName: response.profileObj.name,
-      userEmail: response.profileObj.email });
+      userEmail: response.profileObj.email }, this.getNotes);
   }
 
   failureGoogle = (response) => {
@@ -86,6 +86,18 @@ class App extends Component {
         );
     }
   }
+
+  getNotes = () => {
+    const _this = this;
+    const url = "notes/" + this.state.userEmail;
+    fetch(url)
+    .then((resp) => resp.json())
+    .then(function(data) {
+      console.log(data);
+      _this.setState({ notes: data.notes });
+    });
+  }
+
   addNote = () => {
     let text = document.querySelector("input").value;
     const newNote = { text };
