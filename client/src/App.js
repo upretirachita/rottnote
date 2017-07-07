@@ -15,7 +15,8 @@ class App extends Component {
       userName: null,
       userEmail: null,
       notes: [],
-      modifyIndex: -1
+      modifyIndex: -1,
+      deleteIndex: -1
     };
   }
 
@@ -50,6 +51,12 @@ class App extends Component {
                 index={index}
                 note={note}
                 modify={index == this.state.modifyIndex}
+
+                onDelete={this.deleteClicked}
+
+                index={index}
+                note={note}
+                delete={index == this.state.deleteIndex}
               />
             );
           })}
@@ -87,6 +94,19 @@ class App extends Component {
     this.setState({ modifyIndex: index });
     console.log(index);
   }
+
+  deleteClicked = (index) => {
+    var array = this.state.notes;
+    array.splice(index, 1);
+    this.setState({ notes: array });
+
+    const newState = {
+      userEmail: this.state.userEmail,
+      notes: array
+    };
+    RestApi.postNewNote(newState);
+  }
+
 }
 
 export default App;

@@ -15,7 +15,7 @@ class Note extends Component {
             type="button"
             onClick={() => this.props.onModify(this.props.index)}
             >Modify</button>
-          </div>
+        </div>
       );
     else
       return(
@@ -25,6 +25,9 @@ class Note extends Component {
             type="button"
             onClick={() => this.props.onModify(this.props.index)}
             >Modify</button>
+          <button type="button"
+            onClick={() => this.props.onDelete(this.props.index)}
+            >Delete</button>
         </div>
       );
   }
