@@ -49,6 +49,7 @@ class App extends Component {
                 onModify={this.modifyClicked}
                 index={index}
                 note={note}
+                // eslint-disable-next-line
                 modify={index == this.state.modifyIndex}
               />
             );
