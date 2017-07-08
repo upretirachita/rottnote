@@ -1,5 +1,5 @@
 const RestApi = {
-  postNewNote(state) {
+  postNotes(state) {
     fetch("notes", {
       method: "POST",
       headers: {
@@ -8,6 +8,14 @@ const RestApi = {
       },
       body: JSON.stringify(state)
     });
+  },
+
+  fetchNotes(userEmail, notesFetched) {
+    const url = "notes/" + userEmail;
+    fetch(url)
+    .then((resp) => resp.json())
+    .then((data) => notesFetched(data.notes)
+    );
   }
 }
 

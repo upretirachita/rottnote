@@ -24,8 +24,10 @@ class App extends Component {
   successGoogle = (response) => {
     console.log(response);
     authenticated = true;
-    this.setState({ userName: response.profileObj.name,
-      userEmail: response.profileObj.email }, this.getNotes);
+    let userName = response.profileObj.name;
+    let userEmail = response.profileObj.email;
+    this.setState({ userName, userEmail });
+    RestApi.fetchNotes(userEmail, this.notesFetched);
   }
 
   failureGoogle = (response) => {
@@ -87,17 +89,6 @@ class App extends Component {
     }
   }
 
-  getNotes = () => {
-    const _this = this;
-    const url = "notes/" + this.state.userEmail;
-    fetch(url)
-    .then((resp) => resp.json())
-    .then(function(data) {
-      console.log(data);
-      _this.setState({ notes: data.notes });
-    });
-  }
-
   addNote = () => {
     let text = document.querySelector("input").value;
     const newNote = { text };
@@ -107,7 +98,7 @@ class App extends Component {
       userEmail: this.state.userEmail,
       notes: newNotes
     };
-    RestApi.postNewNote(newState);
+    RestApi.postNotes(newState);
   }
 
   modifyClicked = (index) => {
@@ -128,9 +119,10 @@ class App extends Component {
       userEmail: this.state.userEmail,
       notes: array
     };
-    RestApi.postNewNote(newState);
+    RestApi.postNotes(newState);
   }
 
+  notesFetched = notes => this.setState({ notes });
 }
 
 export default App;
