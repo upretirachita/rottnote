@@ -5,8 +5,6 @@ import GoogleLogin from 'react-google-login';
 import RestApi from './RestApi';
 import Note from './Note';
 
-let authenticated = false;
-
 class App extends Component {
   constructor(props) {
     super(props)
@@ -23,7 +21,6 @@ class App extends Component {
 
   successGoogle = (response) => {
     console.log(response);
-    authenticated = true;
     let userName = response.profileObj.name;
     let userEmail = response.profileObj.email;
     this.setState({ userName, userEmail });
@@ -36,7 +33,7 @@ class App extends Component {
 
 
   render() {
-    if(authenticated) {
+    if(this.state.userEmail) {
       return (
         <div className="App">
           <div className="App-header">
