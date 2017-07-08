@@ -119,7 +119,7 @@ class App extends Component {
     RestApi.postNotes(newState);
   }
 
-  notesFetched = notes => this.setState({ notes });
+  notesFetched = (notes = []) => this.setState({ notes });
 }
 
 export default App;
