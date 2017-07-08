@@ -12,7 +12,7 @@ class App extends Component {
     this.state = {
       userName: null,
       userEmail: null,
-      notes: [],
+      notes: null,
       modifyIndex: -1,
       saveIndex: -1,
       deleteIndex: -1
@@ -40,11 +40,11 @@ class App extends Component {
             <img src={logo} className="App-logo" alt="logo" />
             <h2>Welcome to rottnote, {this.state.userName}!</h2>
           </div>
-          <p className="App-intro">
+          {this.state.notes ? <p className="App-intro">
             <input type="text" />
             <button type="button" onClick={this.addNote}>Add note</button>
-          </p>
-          {this.state.notes.map((note, index) => {
+          </p> : "Loading..."}
+          {this.state.notes ? this.state.notes.map((note, index) => {
             return(
               <Note
                 onModify={this.modifyClicked}
@@ -66,7 +66,7 @@ class App extends Component {
                 delete={index == this.state.deleteIndex}
               />
             );
-          })}
+          }) : "" }
         </div>
       )
     }
