@@ -105,7 +105,13 @@ class App extends Component {
   deleteClicked = (index) => {
     var array = this.state.notes.slice();
     array.splice(index, 1);
-    this.setState({ notes: array });
+    if (index < this.state.modifyIndex) {
+      // the note under modification moves up as a note above it got deleted
+      const modifyIndex = this.state.modifyIndex - 1;
+      this.setState({ notes: array, modifyIndex });
+    } else {
+      this.setState({ notes: array });
+    }
 
     const newState = {
       userEmail: this.state.userEmail,
