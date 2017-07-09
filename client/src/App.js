@@ -14,8 +14,7 @@ class App extends Component {
       userEmail: null,
       notes: null,
       modifyIndex: -1,
-      saveIndex: -1,
-      deleteIndex: -1
+      saveIndex: -1
     };
   }
 
@@ -58,12 +57,8 @@ class App extends Component {
                 note={note}
                 save={index == this.state.saveIndex}
 
-				// eslint-disable-next-line
+                // eslint-disable-next-line
                 onDelete={this.deleteClicked}
-
-                index={index}
-                note={note}
-                delete={index == this.state.deleteIndex}
               />
             );
           }) : "" }
