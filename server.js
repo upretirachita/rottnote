@@ -62,6 +62,8 @@ app.get('/notes/:email', (req, res) => {
       res.send(JSON.stringify(data));
     });
   }
+  else
+      res.json([]);
 });
 
 app.listen(app.get('port'), () => {
