@@ -13,4 +13,4 @@ jobs:
       - run:
           name: npm-install-nodejs-app-dependencies
           command: npm install
-      - run: echo "TODO App deployment..."
+      - run: echo "TODO\: App deployment..."
