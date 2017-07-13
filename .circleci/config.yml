@@ -7,7 +7,7 @@ jobs:
     steps:
       - checkout
       - run:
-        name: npm-install-react-app-dependencies
-        working_directory: ~/rottnote/client
-        command: npm install
+          name: npm-install-react-app-dependencies
+          working_directory: ~/rottnote/client
+          command: npm install
       - run: echo "hello world"
