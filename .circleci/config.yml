@@ -15,6 +15,8 @@ jobs:
           working_directory: ~/rottnote/client
           command: npm run build
       - run:
-          name: npm-install-nodejs-app-dependencies
-          command: npm install
-      - run: echo "TODO App deployment..."
+          name: npm-install-now
+          command: npm install now --global
+      - run:
+          name: npm-deploy-to-now
+          command: now -e NODE_ENV=production -e DB_URI=${DB_URI} -t ${NOW_TOKEN} alias rottnote
