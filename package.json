@@ -9,8 +9,7 @@
     "express": "^4.13.3",
     "fs": "0.0.2",
     "mongodb": "^2.2.28",
-    "mongoose": "^4.10.6",
-    "serve": "^6.0.2"
+    "mongoose": "^4.10.6"
   },
   "scripts": {
     "start": "concurrently \"npm run server\" \"npm run client\"",
