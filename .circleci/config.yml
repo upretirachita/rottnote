@@ -7,6 +7,9 @@ jobs:
     steps:
       - checkout
       - run:
+          name: yarn-install-now
+          command: yarn global add now
+      - run:
           name: npm-install-react-app-dependencies
           working_directory: ~/rottnote/client
           command: npm install
@@ -14,9 +17,6 @@ jobs:
           name: npm-build-react-app
           working_directory: ~/rottnote/client
           command: npm run build
-      - run:
-          name: npm-install-now
-          command: npm install now --global
       - run:
           name: npm-deploy-to-now
           command: now -e NODE_ENV=production -e DB_URI=${DB_URI} -t ${NOW_TOKEN} alias rottnote
