@@ -1,9 +1,9 @@
 version: 2
 jobs:
    build:
-     working_directory: ~/<project root directory>
+     working_directory: ~/rottnote
      docker:
-       - image: circleci/<language>:<version TAG>
+       - image: circleci/node:6.10.3
      steps:
        - checkout
        - run: echo "hello world"
