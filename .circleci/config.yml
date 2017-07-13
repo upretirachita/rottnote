@@ -11,6 +11,10 @@ jobs:
           working_directory: ~/rottnote/client
           command: npm install
       - run:
+          name: npm-build-react-app
+          working_directory: ~/rottnote/client
+          command: npm run build
+      - run:
           name: npm-install-nodejs-app-dependencies
           command: npm install
-      - run: echo "TODO\: App deployment..."
+      - run: echo "TODO App deployment..."
