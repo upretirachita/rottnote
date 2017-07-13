@@ -7,9 +7,6 @@ jobs:
     steps:
       - checkout
       - run:
-          name: yarn-install-now
-          command: yarn global add now
-      - run:
           name: npm-install-react-app-dependencies
           working_directory: ~/rottnote/client
           command: npm install
