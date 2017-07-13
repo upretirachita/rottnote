@@ -12,7 +12,7 @@ jobs:
           command: npm install
       - run:
           name: npm-build-react-app
-          command: cd client; npm run build
+          command: cd client && npm run build
       - run:
           name: npm-install-nodejs-app-dependencies
           command: npm install
