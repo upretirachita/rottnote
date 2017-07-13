@@ -1,13 +1,13 @@
 version: 2
 jobs:
-   build:
-     working_directory: ~/rottnote
-     docker:
-       - image: circleci/node:6.10.3
-     steps:
-       - checkout
-       - run:
-          name: npm-install-react-app-dependencies
-          working_directory: ~/rottnote/client
-          command: npm install
-       - run: echo "hello world"
+  build:
+    working_directory: ~/rottnote
+    docker:
+      - image: circleci/node:6.10.3
+    steps:
+      - checkout
+      - run:
+        name: npm-install-react-app-dependencies
+        working_directory: ~/rottnote/client
+        command: npm install
+      - run: echo "hello world"
