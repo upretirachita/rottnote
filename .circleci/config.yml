@@ -3,7 +3,7 @@ jobs:
   build:
     working_directory: ~/rottnote
     docker:
-      - image: circleci/node:6.10.3
+      - image: circleci/node:7.10.0
     steps:
       - checkout
       - run:
