@@ -7,9 +7,6 @@ jobs:
     steps:
       - checkout
       - run:
-          name: update-npm
-          command: 'sudo npm install -g npm@3.10.10'
-      - run:
           name: npm-install-react-app-dependencies
           working_directory: ~/rottnote/client
           command: npm install
