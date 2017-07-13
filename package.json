@@ -13,7 +13,6 @@
   },
   "scripts": {
     "start": "concurrently \"npm run server\" \"npm run client\"",
-    "now-start": "serve -s ./client/build",
     "now-start": "npm run server",
     "server": "babel-node server.js",
     "client": "babel-node start-client.js"

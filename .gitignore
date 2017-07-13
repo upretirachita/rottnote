@@ -7,7 +7,7 @@
 /coverage
 
 # production
-/build
+/client/build
 
 # misc
 .DS_Store
@@ -23,4 +23,3 @@ yarn-error.log*
 cra-server-ex.graffle
 node_modules
 npm-debug.log
-client/build
