@@ -14,4 +14,3 @@ jobs:
           name: npm-build-react-app
           working_directory: ~/rottnote/client
           command: npm run build
-      - run: echo "TODO: App deployment..."
