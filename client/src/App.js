@@ -12,9 +12,9 @@ class App extends Component {
     this.state = {
       userName: null,
       userEmail: null,
+      nextId: 1,
       notes: null,
-      modifyIndex: -1,
-      saveIndex: -1
+      modifyIndex: -1
     };
   }
 
@@ -47,6 +47,7 @@ class App extends Component {
             return(
               <Note
                 onModify={this.modifyClicked}
+                key={note.id}
                 index={index}
                 note={note}
                 // eslint-disable-next-line
@@ -54,6 +55,7 @@ class App extends Component {
 
                 // save-line
                 onSave={this.saveClicked}
+                onCancel={this.cancelClicked}
                 // eslint-disable-next-line
                 save={index == this.state.saveIndex}
 
@@ -82,11 +84,15 @@ class App extends Component {
 
   addNote = () => {
     let text = document.querySelector("input").value;
-    const newNote = { text };
+    let id = this.state.nextId;
+    let nextId = this.state.nextId;
+    nextId++;
+    const newNote = { id, text };
     const newNotes = this.state.notes.concat(newNote);
-    this.setState({ notes: newNotes });
+    this.setState({ nextId: nextId, notes: newNotes });
     const newState = {
       userEmail: this.state.userEmail,
+      nextId: nextId,
       notes: newNotes
     };
     RestApi.postNotes(newState);
@@ -96,9 +102,21 @@ class App extends Component {
     this.setState({ modifyIndex: index });
     console.log(index);
   }
-   saveClicked = (index) => {
-    this.setState({ saveIndex: index });
+
+  saveClicked = (index, text) => {
+    let array = this.state.notes.slice();
+    array[index] = text;
+    this.setState({ notes: array, modifyIndex: -1 });
     console.log(index);
+    const newState = {
+      userEmail: this.state.userEmail,
+      notes: array
+    };
+    RestApi.postNotes(newState);
+  }
+
+  cancelClicked = () => {
+    this.setState({ modifyIndex: -1 });
   }
 
   deleteClicked = (index) => {
@@ -119,7 +137,10 @@ class App extends Component {
     RestApi.postNotes(newState);
   }
 
-  notesFetched = (notes = []) => this.setState({ notes });
+  notesFetched = ({ nextId = 1, notes = [] }) => {
+    console.log("notesFetched() called");
+    this.setState({ nextId, notes });
+  }
 }
 
 export default App;

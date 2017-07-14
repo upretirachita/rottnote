@@ -14,7 +14,7 @@ const RestApi = {
     const url = "notes/" + userEmail;
     fetch(url)
     .then((resp) => resp.json())
-    .then((data) => notesFetched(data.notes)
+    .then((data) => notesFetched(data)
     );
   }
 }

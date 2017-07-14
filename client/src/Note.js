@@ -19,8 +19,12 @@ class Note extends Component {
             onChange={event => this.setState({ text: event.target.value})}/>
           <button
             type="button"
-            onClick={() => this.props.onModify(this.props.index)}
-            >Modify</button>
+            onClick={() => this.props.onSave(this.props.index, this.state.text)}
+            >Save</button>
+          <button
+            type="button"
+            onClick={() => this.props.onCancel()}
+            >Cancel</button>
         </div>
       );
     else
@@ -31,11 +35,6 @@ class Note extends Component {
             type="button"
             onClick={() => this.props.onModify(this.props.index)}
             >Modify</button>
-
-            <button type="button"
-            onClick={() => this.props.onSave(this.props.index)}
-            >Save</button>
-
           <button type="button"
             onClick={() => this.props.onDelete(this.props.index)}
             >Delete</button>
