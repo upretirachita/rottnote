@@ -7,16 +7,16 @@ jobs:
     steps:
       - checkout
       - run:
-          name: install-now
+          name: Install now
           command: sudo npm install now --global
       - run:
-          name: npm-install-react-app-dependencies
+          name: Install rottnote React App Dependencies
           working_directory: ~/rottnote/client
           command: npm install
       - run:
-          name: npm-build-react-app
+          name: Build Production Optimized rottnote React App
           working_directory: ~/rottnote/client
           command: npm run build
       - run:
-          name: npm-deploy-to-now
-          command: now -e NODE_ENV=production -e DB_URI=${DB_URI} -t ${NOW_TOKEN} alias rottnote
+          name: Deploy rottnote Using now
+          command: now -e NODE_ENV=production -e DB_URI=${DB_URI} -t ${NOW_TOKEN}
