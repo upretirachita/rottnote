@@ -10,16 +10,16 @@ jobs:
           name: Install Zeit now
           command: sudo npm install now --global
       - run:
-          name: Install rottnote React App Dependencies
+          name: Install Dependencies of rottnote React App
           working_directory: ~/rottnote/client
           command: npm install
       - run:
-          name: Build rottnote React App
+          name: Build rottnote React App (i.e. Static Content)
           working_directory: ~/rottnote/client
           command: npm run build
       - run:
-          name: Deploy rottnote Using Zeit now
+          name: Deploy rottnote NodeJS App and Static Content Using Zeit now
           command: now -e NODE_ENV=production -e DB_URI=${DB_URI} -t ${NOW_TOKEN}
       - run:
-          name: Publish rottnote to https://rottnote.now.sh
-          command: now -t ${NOW_TOKEN} alias ${NOW_URL} rottnote
+          name: Publish rottnote NodeJS App to https://rottnote.now.sh
+          command: now alias ${NOW_URL} rottnote -t ${NOW_TOKEN}
