@@ -52,13 +52,9 @@ class App extends Component {
                 note={note}
                 // eslint-disable-next-line
                 modify={index == this.state.modifyIndex}
-
                 // save-line
                 onSave={this.saveClicked}
                 onCancel={this.cancelClicked}
-                // eslint-disable-next-line
-                save={index == this.state.saveIndex}
-
                 onDelete={this.deleteClicked}
               />
             );
