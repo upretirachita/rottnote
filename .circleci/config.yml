@@ -7,6 +7,9 @@ jobs:
     steps:
       - checkout
       - run:
+          name: install-now
+          command: sudo npm install now --global
+      - run:
           name: npm-install-react-app-dependencies
           working_directory: ~/rottnote/client
           command: npm install
