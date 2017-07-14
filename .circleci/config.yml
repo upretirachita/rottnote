@@ -20,3 +20,6 @@ jobs:
       - run:
           name: Deploy rottnote Using now
           command: now -e NODE_ENV=production -e DB_URI=${DB_URI} -t ${NOW_TOKEN}
+      - run:
+          name: Make rottnote Available Via Domain rottnote.now.sh
+          command: now alias ${NOW_URL} rottnote
