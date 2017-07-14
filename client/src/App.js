@@ -105,7 +105,7 @@ class App extends Component {
 
   saveClicked = (index, text) => {
     let array = this.state.notes.slice();
-    array[index] = text;
+    array[index].text = text;
     this.setState({ notes: array, modifyIndex: -1 });
     console.log(index);
     const newState = {
