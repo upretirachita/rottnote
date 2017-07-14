@@ -7,19 +7,19 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Install now
+          name: Install Zeit now
           command: sudo npm install now --global
       - run:
           name: Install rottnote React App Dependencies
           working_directory: ~/rottnote/client
           command: npm install
       - run:
-          name: Build Production Optimized rottnote React App
+          name: Build rottnote React App
           working_directory: ~/rottnote/client
           command: npm run build
       - run:
-          name: Deploy rottnote Using now
+          name: Deploy rottnote Using Zeit now
           command: now -e NODE_ENV=production -e DB_URI=${DB_URI} -t ${NOW_TOKEN}
       - run:
-          name: Make rottnote Available Via Domain rottnote.now.sh
-          command: now alias ${NOW_URL} rottnote
+          name: Publish rottnote to https://rottnote.now.sh
+          command: now -t ${NOW_TOKEN} alias ${NOW_URL} rottnote
