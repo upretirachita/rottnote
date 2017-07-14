@@ -23,7 +23,10 @@ class Note extends Component {
             >Save</button>
           <button
             type="button"
-            onClick={() => this.props.onCancel()}
+            onClick={() => {
+              this.setState( { text: this.props.note.text } ); // discard changes
+              this.props.onCancel();
+            }}
             >Cancel</button>
         </div>
       );
