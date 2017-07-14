@@ -25,4 +25,4 @@ jobs:
           command: echo ${NOW_URL}
       - run:
           name: Publish rottnote to url https://rottnote.now.sh
-          command: now alias ${NOW_URL} rottnote -t ${NOW_TOKEN}
+          command: now alias set ${NOW_URL} rottnote -t ${NOW_TOKEN}
