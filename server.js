@@ -7,7 +7,9 @@ app.use(bodyParser.json());
 let MONGODB_CONNECTED = false;
 const noteSchema = new mongoose.Schema({
   userEmail: String,
+  nextId: Number,
   notes: {
+    id: Number,
     type: Array
   } });
 const Notes = mongoose.model('Notes', noteSchema);
@@ -50,20 +52,20 @@ app.post('/notes', (req, res) => {
 app.get('/notes/:email', (req, res) => {
   let data;
   if (MONGODB_CONNECTED) {
-    Notes.findOne({userEmail: req.params.email}, "notes", function(err, result) {
+    Notes.findOne({userEmail: req.params.email}, function(err, result) {
       if (err) {
         console.log(err);
       }
       if (result !== null) {
         data = result;
       } else {
-        data = [];
+        data = {};
       }
       res.send(JSON.stringify(data));
     });
   }
   else
-      res.json([]);
+      res.json({});
 });
 
 app.listen(app.get('port'), () => {
