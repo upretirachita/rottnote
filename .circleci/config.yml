@@ -20,7 +20,7 @@ jobs:
       - run:
           name: Deploy rottnote Using Zeit now
           command: now -e NODE_ENV=production -e DB_URI=${DB_URI} -t ${NOW_TOKEN}
-      -run:
+      - run:
           name: Echo NOW_URL
           command: echo $${NOW_URL}
       - run:
