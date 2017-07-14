@@ -21,8 +21,5 @@ jobs:
           name: Deploy rottnote Using Zeit now
           command: now -e NODE_ENV=production -e DB_URI=${DB_URI} -t ${NOW_TOKEN}
       - run:
-          name: Echo NOW_URL
-          command: echo ${NOW_URL}
-      - run:
           name: Publish rottnote to url https://rottnote.now.sh
           command: now alias ${NOW_URL} rottnote.now.sh -t ${NOW_TOKEN}
