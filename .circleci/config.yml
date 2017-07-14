@@ -14,12 +14,14 @@ jobs:
           working_directory: ~/rottnote/client
           command: npm install
       - run:
-          name: Build rottnote React App (i.e. Static Content)
+          name: Build rottnote React App
           working_directory: ~/rottnote/client
           command: npm run build
       - run:
-          name: Deploy rottnote NodeJS App and Static Content Using Zeit now
+          name: Deploy rottnote Using Zeit now
           command: now -e NODE_ENV=production -e DB_URI=${DB_URI} -t ${NOW_TOKEN}
+      -run: Echo NOW_URL
+          command: echo $${NOW_URL}
       - run:
-          name: Publish rottnote NodeJS App to https://rottnote.now.sh
+          name: Publish rottnote to url https://rottnote.now.sh
           command: now alias ${NOW_URL} rottnote -t ${NOW_TOKEN}
