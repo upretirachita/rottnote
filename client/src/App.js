@@ -65,7 +65,7 @@ class App extends Component {
     else {
       return (
         <div className="App">
-          <h1>_rottnote_</h1>
+          <h1>rottnote</h1>
             <GoogleLogin
               clientId="481779456855-ruamb5psvnjva1auqp6q3f7a0u9qatam.apps.googleusercontent.com"
               onSuccess={this.successGoogle}
