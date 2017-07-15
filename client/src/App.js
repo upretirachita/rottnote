@@ -14,12 +14,11 @@ class App extends Component {
       userEmail: null,
       nextId: 1,
       notes: null,
-      modifyIndex: -1
+      modifyId: null
     };
   }
 
   successGoogle = (response) => {
-    console.log(response);
     let userName = response.profileObj.name;
     let userEmail = response.profileObj.email;
     this.setState({ userName, userEmail });
@@ -46,13 +45,12 @@ class App extends Component {
           {this.state.notes ? this.state.notes.map((note, index) => {
             return(
               <Note
-                onModify={this.modifyClicked}
                 key={note.id}
                 index={index}
                 note={note}
-                // eslint-disable-next-line
-                modify={index == this.state.modifyIndex}
-                // save-line
+                modify={note.id === this.state.modifyId}
+                modifyDisabled={this.state.modifyId !== null}
+                onModify={this.modifyClicked}
                 onSave={this.saveClicked}
                 onCancel={this.cancelClicked}
                 onDelete={this.deleteClicked}
@@ -95,15 +93,14 @@ class App extends Component {
   }
 
   modifyClicked = (index) => {
-    this.setState({ modifyIndex: index });
-    console.log(index);
+    this.setState({ modifyId: this.state.notes[index].id });
   }
 
   saveClicked = (index, text) => {
     let array = this.state.notes.slice();
     array[index].text = text;
-    this.setState({ notes: array, modifyIndex: -1 });
-    console.log(index);
+    this.setState({ notes: array, modifyId: null });
+
     const newState = {
       userEmail: this.state.userEmail,
       notes: array
@@ -112,19 +109,13 @@ class App extends Component {
   }
 
   cancelClicked = () => {
-    this.setState({ modifyIndex: -1 });
+    this.setState({ modifyId: null });
   }
 
   deleteClicked = (index) => {
     var array = this.state.notes.slice();
     array.splice(index, 1);
-    if (index < this.state.modifyIndex) {
-      // the note under modification moves up as a note above it got deleted
-      const modifyIndex = this.state.modifyIndex - 1;
-      this.setState({ notes: array, modifyIndex });
-    } else {
-      this.setState({ notes: array });
-    }
+    this.setState({ notes: array });
 
     const newState = {
       userEmail: this.state.userEmail,
@@ -134,7 +125,6 @@ class App extends Component {
   }
 
   notesFetched = ({ nextId = 1, notes = [] }) => {
-    console.log("notesFetched() called");
     this.setState({ nextId, notes });
   }
 }

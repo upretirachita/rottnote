@@ -36,6 +36,7 @@ class Note extends Component {
           {this.props.note.text}
           <button
             type="button"
+            disabled={this.props.modifyDisabled}
             onClick={() => this.props.onModify(this.props.index)}
             >Modify</button>
           <button type="button"
