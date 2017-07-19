@@ -36,7 +36,7 @@ class App extends Component {
         <div className="App">
           <div className="App-header">
             <img src={logo} className="App-logo" alt="logo" />
-            <h2>Welcome to ROTTNOTE, {this.state.userName}!</h2>
+            <h2>Welcome to rottnote, {this.state.userName}!</h2>
           </div>
           {this.state.notes ? <p className="App-intro">
             <input type="text" />
@@ -63,7 +63,7 @@ class App extends Component {
     else {
       return (
         <div className="App">
-          <h1>ROTTNOTE</h1>
+          <h1>rottnote</h1>
             <GoogleLogin
               clientId="481779456855-ruamb5psvnjva1auqp6q3f7a0u9qatam.apps.googleusercontent.com"
               onSuccess={this.successGoogle}
