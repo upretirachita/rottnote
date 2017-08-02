@@ -4,6 +4,7 @@ import './App.css';
 import GoogleLogin from 'react-google-login';
 import RestApi from './RestApi';
 import Note from './Note';
+import DeleteDialog from './DeleteDialog';
 
 class App extends Component {
   constructor(props) {
@@ -14,7 +15,10 @@ class App extends Component {
       userEmail: null,
       nextId: 1,
       notes: null,
-      modifyId: null
+      modifyId: null,
+      isDeleteDialogVisible: false,
+      deleteDialogText: "",
+      deleteDialogIndex: null
     };
   }
 
@@ -38,9 +42,16 @@ class App extends Component {
             <img src={logo} className="App-logo" alt="logo" />
             <h2>Welcome to rottnote, {this.state.userName}!</h2>
           </div>
+          <DeleteDialog
+            isVisible={this.state.isDeleteDialogVisible}
+            text={this.state.deleteDialogText}
+            onPositive={this.deleteConfirmed}
+            onNegative={this.onDeleteDialogNegative}>
+          </DeleteDialog>
           {this.state.notes ? <p className="App-intro">
             <input type="text" />
             <button type="button" onClick={this.addNote}>Add note</button>
+            <button type="button" onClick={this.testDialog}>Test</button>
           </p> : "Loading..."}
           {this.state.notes ? this.state.notes.map((note, index) => {
             return(
@@ -92,6 +103,20 @@ class App extends Component {
     RestApi.postNotes(newState);
   }
 
+  testDialog = () => {
+    this.setState({
+      isDeleteDialogVisible: !this.state.isDeleteDialogVisible
+    });
+  }
+
+  onDeleteDialogNegative = () => {
+    this.setState({
+      isDeleteDialogVisible: !this.state.isDeleteDialogVisible,
+      deleteDialogText: "",
+      deleteDialogIndex: null
+    });
+  }
+
   modifyClicked = (index) => {
     this.setState({ modifyId: this.state.notes[index].id });
   }
@@ -112,16 +137,33 @@ class App extends Component {
     this.setState({ modifyId: null });
   }
 
-  deleteClicked = (index) => {
-    var array = this.state.notes.slice();
+  deleteConfirmed = () => {
+    const index = this.state.deleteDialogIndex;
+    let array = this.state.notes.slice();
     array.splice(index, 1);
-    this.setState({ notes: array });
+    this.setState({
+      notes: array,
+      isDeleteDialogVisible: !this.state.isDeleteDialogVisible,
+      deleteDialogText: "",
+      deleteDialogIndex: -1
+    });
 
     const newState = {
       userEmail: this.state.userEmail,
       notes: array
     };
     RestApi.postNotes(newState);
+  }
+
+  deleteClicked = (index) => {
+    const note = this.state.notes[index].text;
+    const message = "Are you sure you want to delete this note: \"" +
+                    note + "\"?";
+    this.setState({
+      isDeleteDialogVisible: !this.state.isDeleteDialogVisible,
+      deleteDialogText: message,
+      deleteDialogIndex: index
+    });
   }
 
   notesFetched = ({ nextId = 1, notes = [] }) => {
