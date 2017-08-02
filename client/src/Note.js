@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import AutoLinkText from 'react-autolink-text';
 
 class Note extends Component {
   // eslint-disable-next-line
@@ -33,7 +34,7 @@ class Note extends Component {
     else
       return(
         <div>
-          {this.props.note.text}
+          <AutoLinkText text={this.props.note.text} />
           <button
             type="button"
             disabled={this.props.modifyDisabled}
