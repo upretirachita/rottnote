@@ -8,13 +8,13 @@ const DeleteDialog = ({...props}) => {
       height: "100%",
       top: 100,
       left: 0,
-      backgroundColor: 'rgba(0,0,0,0.3)'
+      backgroundColor: 'rgba(0,0,0,0.5)'
     };
 
     const dialogStyle = {
       backgroundColor: '#FFF',
       borderRadius: 5,
-      maxWidth: 300,
+      maxWidth: 400,
       minHeight: 150,
       margin: '0 auto',
       padding: 20
@@ -28,7 +28,8 @@ const DeleteDialog = ({...props}) => {
       <div className="dialogBackdrop" style={backdropStyle}>
         <div className="dialogBody" style={dialogStyle}>
           <h4>Confirm action</h4>
-          <p>{props.text}</p>
+          <p>Are you sure you want to delete the following note:</p>
+          <p><i>"{props.text}"</i>?</p>
 
           <div className="dialogFooter">
             <button onClick={props.onPositive}>

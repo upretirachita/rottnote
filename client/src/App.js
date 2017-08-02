@@ -156,11 +156,9 @@ class App extends Component {
 
   deleteClicked = (index) => {
     const note = this.state.notes[index].text;
-    const message = "Are you sure you want to delete this note: \"" +
-                    note + "\"?";
     this.setState({
       isDeleteDialogVisible: !this.state.isDeleteDialogVisible,
-      deleteDialogText: message,
+      deleteDialogText: note,
       deleteDialogIndex: index
     });
   }
