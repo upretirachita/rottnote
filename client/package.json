@@ -5,6 +5,7 @@
   "proxy": "http://localhost:3001/",
   "dependencies": {
     "react": "^15.5.4",
+    "react-autolink-text": "^2.0.0",
     "react-dom": "^15.5.4",
     "react-google-login": "^2.9.2"
   },
