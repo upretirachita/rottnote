@@ -51,7 +51,6 @@ class App extends Component {
           {this.state.notes ? <p className="App-intro">
             <input type="text" />
             <button type="button" onClick={this.addNote}>Add note</button>
-            <button type="button" onClick={this.testDialog}>Test</button>
           </p> : "Loading..."}
           {this.state.notes ? this.state.notes.map((note, index) => {
             return(
