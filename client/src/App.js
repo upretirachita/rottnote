@@ -51,7 +51,7 @@ class App extends Component {
           />
           {this.state.notes
             ? <p className="App-intro">
-                <input type="text" />
+                <input type="text" placeholder="Type your note here!"/>
                 <button type="button" onClick={this.addNote}>
                   Add note
                 </button>
@@ -93,19 +93,22 @@ class App extends Component {
   }
 
   addNote = () => {
-    let text = document.querySelector('input').value;
-    let id = this.state.nextId;
-    let nextId = this.state.nextId;
-    nextId++;
-    const newNote = { id, text };
-    const newNotes = this.state.notes.concat(newNote);
-    this.setState({ nextId: nextId, notes: newNotes });
-    const newState = {
-      userEmail: this.state.userEmail,
-      nextId: nextId,
-      notes: newNotes
-    };
-    RestApi.postNotes(newState);
+    let text = document.querySelector('input').value.trim();
+    if (text.trim().length > 0) {
+      let id = this.state.nextId;
+      let nextId = this.state.nextId;
+      nextId++;
+      const newNote = { id, text };
+      const newNotes = this.state.notes.concat(newNote);
+      this.setState({ nextId: nextId, notes: newNotes });
+      const newState = {
+        userEmail: this.state.userEmail,
+        nextId: nextId,
+        notes: newNotes
+      };
+      RestApi.postNotes(newState);
+    }
+    document.querySelector('input').value ='';
   };
 
   testDialog = () => {
