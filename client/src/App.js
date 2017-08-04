@@ -79,7 +79,7 @@ class App extends Component {
               onSuccess={this.successGoogle}
               onFailure={this.failureGoogle}
             >
-              <span>Login with Google</span>
+              <span >Login with Google</span>
             </GoogleLogin>
           </div>
         );
