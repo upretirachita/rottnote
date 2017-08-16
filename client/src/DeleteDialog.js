@@ -27,7 +27,7 @@ const DeleteDialog = ({...props}) => {
     return(
       <div className="dialogBackdrop" style={backdropStyle}>
         <div className="dialogBody" style={dialogStyle}>
-          <h4>Confirm action</h4>
+          <h4>Confirm Action</h4>
           <p>Are you sure you want to delete the following note:</p>
           <p><i>"{props.text}"</i>?</p>
 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import logo from './logo1.png';
 import './App.css';
 import GoogleLogin from 'react-google-login';
 import RestApi from './RestApi';
@@ -74,14 +74,16 @@ class App extends Component {
       return (
         <div className="App">
           <h1>rottnote</h1>
+			
             <GoogleLogin
-              clientId="481779456855-ruamb5psvnjva1auqp6q3f7a0u9qatam.apps.googleusercontent.com"
+              clientId="481779456855-ruamb5psvnjva1auqp6q3f7a0u9qatam.apps.googleusercontent.com" className="googleLogin"
               onSuccess={this.successGoogle}
               onFailure={this.failureGoogle}
             >
               <span >Login with Google</span>
             </GoogleLogin>
           </div>
+         
         );
     }
   }

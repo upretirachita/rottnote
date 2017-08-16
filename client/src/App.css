@@ -6,11 +6,10 @@
 }
 
 .App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+  height: 100px; 
 }
 
-
+ 
 .App-header {
   background-color: #909b1b;
   height: 150px;
@@ -20,15 +19,20 @@
 
 
 .App-intro {
-  font-size: large;
+	font-size: large;
+	width: 100%;
+	height:150px;
+	margin: 8px 12px 12px -40px;
+	display: inline-block;
+	  
 }
 
 
 input[type=text], select {
-    width: 50%;
+    width: 40%;
     height:150px;
-    padding: 12px 20px;
-    margin: 8px 0;
+    padding: 12px 25px 20px 12px;
+    margin: 8px 12px 12px 8px;
     display: inline-block;
     border: 1px solid #8e9a1e;
     border-radius: 10px;
@@ -36,18 +40,35 @@ input[type=text], select {
     background-color:#e1e2c0;
     font-family: verdana;
     font-size: 20px;
+    
+    
 }
+
 
 input[type=submit], button {
     padding: 5px 5px 5px 5px;
-    margin: 8px 8px 8px 8px;
+    margin: 8px 15px 8px 18px;
     border: 1px solid #8e9a1e;
     border-radius: 15px;
     box-sizing: border-box;
     background-color:#939e1b;
+    color:white;
+    font-weight:bold;   
+  
 }
+
+.googleLogin{
+ 
+    
+    background-color:#939e1b;
+    color:white;
+    font-weight:bold;
+   
+  
+}
+
 h1 {
-    color: black;
+    color:#909b1b;
     text-align: center;
 }
 

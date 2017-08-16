@@ -14,7 +14,7 @@ class Note extends Component {
     if(this.props.modify)
       return(
         <div>
-          <input
+          <input 
             type="text"
             value={this.state.text}
             onChange={event => this.setState({ text: event.target.value})}/>
