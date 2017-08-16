@@ -52,6 +52,11 @@ class Note extends Component {
           >
             Delete
           </button>
+          Important?
+          <input
+            type="checkbox"
+            checked={!!this.props.note.isImportant}
+            onChange={() => this.props.onMarkAsImportant(this.props.index)} />
         </div>
       );
   }

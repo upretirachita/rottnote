@@ -10,6 +10,7 @@ const noteSchema = new mongoose.Schema({
   nextId: Number,
   notes: {
     id: Number,
+    isImportant: {type: Boolean, default: false},
     type: Array
   } });
 const Notes = mongoose.model('Notes', noteSchema);

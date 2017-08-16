@@ -70,6 +70,7 @@ class App extends Component {
                     onSave={this.saveClicked}
                     onCancel={this.cancelClicked}
                     onDelete={this.deleteClicked}
+                    onMarkAsImportant={this.markNoteAsImportantClicked}
                   />
                 );
               })
@@ -170,6 +171,37 @@ class App extends Component {
       deleteDialogText: note,
       deleteDialogIndex: index
     });
+  };
+
+  markNoteAsImportantClicked = index => {
+    let array = this.state.notes.slice();
+    if (array[index].isImportant === undefined) {
+      array[index].isImportant = true;
+    } else {
+      array[index].isImportant = !array[index].isImportant;
+    }
+    array = this.sortNotes(array);
+    this.setState({
+      notes: array
+    });
+    const newState = {
+      userEmail: this.state.userEmail,
+      notes: array
+    };
+    RestApi.postNotes(newState);
+  };
+
+  sortNotes = notes => {
+    notes.sort((a, b) => {
+      if (a.isImportant && !b.isImportant) {
+        return -1;
+      } else if (b.isImportant && !a.isImportant) {
+        return 1;
+      } else {
+        return a.id - b.id;
+      }
+    });
+    return notes;
   };
 
   notesFetched = ({ nextId = 1, notes = [] }) => {
